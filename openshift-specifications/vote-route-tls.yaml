@@ -1,0 +1,19 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: vote-kio
+  labels:
+    app: voting-app
+  annotations:
+    kubernetes.io/tls-acme: 'true'
+spec:
+  host: vote.kyberorg.io
+  to:
+    kind: Service
+    name: vote
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+
